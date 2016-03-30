@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>弹窗</title>
+    <link rel="stylesheet"  type="text/css" href="css/style.css" />
+    <style>
+        .claer{ clear: both; }
+        .blurs{ -webkit-filter: blur(5px); -moz-filter: blur(5px); -o-filter: blur(5px); -ms-filter: blur(5px); filter: blur(5px);  }
+        .tc_bgc{ display: block; position: fixed; left: 0px; top:0px; width: 100%; height: 100%; z-index: 998; background-color: rgba(0,0,0,0.7); }
+        .addc{ animation: lr_rotate  .3s; }
+        @keyframes lr_rotate{ from{ transform: rotate(0deg); } to{ transform: rotate(360deg); }}
+
+        .btn{ width: 100%; height: 100px; }
+        .btn>span{ display: inline-block; width: 150px; height: 40px; line-height: 40px; text-align: center; margin:50px 20px; color: #fff; background-color: #00B0DD; border-radius: 8px; box-shadow: 3px 3px 6px #333; cursor: pointer; }
+        .tc_layer{ display: none; transform:rotate(0deg); position: fixed; left: 300px; top:200px; z-index: 999; width: 1px; height: 1px; background: #fff; border-radius: 10px; overflow: hidden; }
+        .tc_lay_tit{width: 100%; height: 40px; font-family: 微软雅黑; line-height: 40px; color: #fff; background: url('images/logo8.png') no-repeat left #4E8CF2; background-size: 5%; background-position-x: 15px; }
+        .tc_lay_tit>label{ display: inline-block; margin-left: 45px; }
+        .tc_tit>span{ display: block; position: absolute; transform:rotate(0deg); right: 5px; top: 0px; width: 40px; height: 40px; line-height: 40px; color: #fff; font-size: 150%; text-align: center; cursor: pointer; }
+        .tc_tit>span:hover{ animation: xx_rotate .3s; }
+        @keyframes xx_rotate{ from{ transform: rotate(0deg); } to{ transform: rotate(360deg); }}
+
+        .tc_lay_mes{width: 100%; height: 155px; line-height: 160px; text-align: center; color: #666; font-size: 120%;}
+        .tc_layer5>.tc_lay_btn{width: 100%; text-align: center; position: absolute; bottom: 10px; }
+        .tc_layer5>.tc_lay_btn>a{ display: inline-block; width: 120px; height: 35px; line-height: 35px; text-align: center; color: #fff; border-radius: 5px; font-family: 微软雅黑; margin: 0 20px; cursor: pointer;  }
+        .tc_layer5>.tc_lay_btn>a:nth-child(1){ background-color: #4E8CF2; }
+        .tc_layer5>.tc_lay_btn>a:nth-child(1):hover{ background-color: #145ACC; }
+        .tc_layer5>.tc_lay_btn>a:nth-child(1):active{ background-color: #145ACC; }
+        .tc_layer5>.tc_lay_btn>a:nth-child(2){ background-color: #F96E6E; }
+        .tc_layer5>.tc_lay_btn>a:nth-child(2):hover{ background-color: #F64444; }
+        .tc_layer5>.tc_lay_btn>a:nth-child(2):active{ background-color: #F64444; }
+
+        .tc_layer1,.tc_layer2,.tc_layer3{ border-radius: 5px; }
+        .tc_layer1>.tc_lay_mes{ height: 115px; line-height: 120px; }
+        .tc_lay>.tc_lay_btn{position: absolute; bottom: 0px; width: 100%; height: 40px; }
+        .tc_lay>.tc_lay_btn>a{ float: left; width: 50%; height: 40px; line-height: 40px; text-align: center; color: #fff; cursor: pointer; }
+        .tc_lay>.tc_lay_btn>a:nth-child(1){ background-color: #4E8CF2; border-bottom-left-radius: 5px;  }
+        .tc_lay>.tc_lay_btn>a:nth-child(1):hover{ background-color: #145ACC; }
+        .tc_lay>.tc_lay_btn>a:nth-child(1):active{ background-color: #145ACC; }
+        .tc_lay>.tc_lay_btn>a:nth-child(2){ background-color: #D0D6D9; border-bottom-right-radius: 5px; color:#666; }
+        .tc_lay>.tc_lay_btn>a:nth-child(2):hover{ background-color: #bbb; color: #fff; }
+        .tc_lay>.tc_lay_btn>a:nth-child(2):active{ background-color: #bbb; color: #fff; }
+
+        .tc_lay_had{ text-align: center; background-color : #4E8CF2; width: 100%; height: 40px; font-family: 微软雅黑; line-height: 40px; color: #fff; }
+        .tc_lay_box{color: #666; font-family: 微软雅黑;}
+        .tc_lay_box>div{width: 255px; margin: 20px auto; border: 1px solid #ccc; border-radius: 5px;}
+        .tc_lay_box>div>input{height: 32px; width: 245px; font-size: 16px; padding-left: 10px; border: 0px; border-radius: 5px;}
+    </style>
+</head>
+<body>
+     <div class="btn">
+         <span class="btn1">弹窗1</span>
+         <span class="btn2">弹窗2</span>
+         <span class="btn3">弹窗3</span>
+         <span class="btn4">弹窗4</span>
+         <span class="btn5">弹窗5</span>
+     </div>
+
+    <div class="tc_layer tc_lay tc_layer1">
+        <div class="tc_lay_tit"><label>温馨提示</label></div>
+        <div class="tc_lay_mes"> 您确定保存该条信息吗？</div>
+        <div class="tc_lay_btn"><a id="wg_ok_layer">确定</a><a id="wg_cancel_layer">取消</a><div class="claer"></div></div>
+    </div>
+     <div class="tc_layer tc_layer2">
+         <div class="tc_tit tc_lay_tit"><label>温馨提示</label><span id="wg_close_layer">×</span></div>
+         <div class="tc_lay_mes"> 您输入的账号不正确！</div>
+     </div>
+     <div class="tc_layer tc_lay tc_layer3">
+         <div class="tc_lay_had"><label id="tc_lay_tit">会员登陆</label></div>
+         <div class="tc_lay_box">
+             <div><input type="text" placeholder="请输入用户名"></div>
+             <div><input type="password" placeholder="请输入密码"></div>
+         </div>
+         <div class="tc_lay_btn"><a id="wg_ok_layer1">登录</a><a id="wg_cancel_layer1">关闭</a><div class="claer"></div></div>
+     </div>
+     <div class="tc_layer tc_layer4">
+         <div class="tc_tit tc_lay_had"><label>HTML展示</label><span id="wg_close_layer1">×</span></div>
+         <div id="tc_lay_body"></div>
+     </div>
+     <div class="tc_layer tc_layer5">
+         <div class="tc_lay_mes"> 您确定删除吗？ </div>
+         <div class="tc_lay_btn"><a id="wg_ok_layer2">确定</a><a id="wg_cancel_layer2">取消</a></div>
+     </div>
+</body>
+<script type="text/javascript" src="js/jquery-2.2.1.min.js"></script>
+<script type="text/javascript" src="js/model.js"></script>
+<script>
+    (function(){
+        $(".btn>span").off().on("click",function(){
+            var _tc = $(this).attr("class").replace("btn","");
+            switch (_tc){
+                case "1":$(".tc_layer1").showLayer();break;
+                case "2":$(".tc_layer2").showLayer({"_isTimingClose":true});break;
+                case "3":$(".tc_layer3").showLayer({"_boxh" : "230px", "_title":"会员登陆", "_btnOKName":"#wg_ok_layer1","_btnCanName":"#wg_cancel_layer1"});break;
+                case "4":$(".tc_layer4").showLayer({"_btnCloName":"#wg_close_layer1"});break;
+                case "5":$(".tc_layer5").showLayer({"_btnOKName":"#wg_ok_layer2","_btnCanName":"#wg_cancel_layer2","_btnOK":function(){alert("我草");},"_btnCancel":function(){alert("没毛病");}});break;
+            }
+        });
+    }());
+</script>
+</html>
